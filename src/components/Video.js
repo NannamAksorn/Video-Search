@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import videoConnect from 'react-html5video';
-import WordCloud from './WordCloud';
 import _ from 'lodash';
 import { Button, AutoComplete, Menu, Dropdown } from 'antd';
 import axios from 'axios';
+import { connect } from 'dva';
 
 const target = 0;
-const Video = ({ video, docID, docName, category, videoEl, children, ...restProps }) => {
+const Video = ({ video, dispatch, docID, docName, category, videoEl, children, ...restProps }) => {
   const [dataSource, setDataSource] = useState([]);
   const [searchQuery, setSearchQuery] = useState([]);
   const [searchresult, setSearchResult] = useState([
@@ -64,6 +64,10 @@ const Video = ({ video, docID, docName, category, videoEl, children, ...restProp
       video.textTracks[target].cues,
       x => x.text === video.textTracks[target].activeCues[target].text,
     );
+    dispatch({
+      type: 'subtitle/set',
+      payload: subIndex,
+    });
   }
   const menu = (
     <Menu>
@@ -96,17 +100,13 @@ const Video = ({ video, docID, docName, category, videoEl, children, ...restProp
       <br />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <video {...restProps}>{children}</video>
-        <div style={{ margin: '20px' }}>
-          <br />
-          <br />
-          <h1>WordCloud</h1>
-          <hr />
-          <WordCloud sid={subIndex || 0} docID={docID} />
-          <hr />
-        </div>
       </div>
     </div>
   );
 };
 
-export default videoConnect(Video);
+export default videoConnect(
+  connect(({ subtitle }) => ({
+    subtitle,
+  }))(Video),
+);

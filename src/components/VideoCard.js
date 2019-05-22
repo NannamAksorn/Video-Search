@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'dva';
-// import styles from './VideoCard.css'
 import { Row, Col } from 'antd';
-import ReactPlayer from 'react-player';
 import Link from 'umi/link';
+
 const VideoCard = props => {
   return (
     <div
@@ -16,21 +15,12 @@ const VideoCard = props => {
         overflow: 'hidden',
       }}
     >
-      <Row>
-        <Col span={9}>
-          {/* <VideoThumbnail
-              videoUrl={`./video/${this.props.video}`}
-              style={{width:'100px'}}
-            /> */}
-          <ReactPlayer
-            url={`./video/${props.video}.mp4#t=${props.start}`}
-            controls
-            width="250px"
-            height="150px"
-          />
-        </Col>
-        <Link to={`/watch?v=${props.video}&id=${props.vkey}&c=${props.category}`}>
-          <Col span={15}>
+      <Link to={`/watch?v=${props.video}&id=${props.vkey}&c=${props.category}`}>
+        <Row>
+          <Col span={12}>
+            <img src={`tmp/${props.video}-thumbnail-320x240-0001.png`} alt="video" />
+          </Col>
+          <Col span={12}>
             <Row style={{ overflow: 'hidden', whiteSpace: 'nowrap', margin: '5px' }} span={2}>
               <div style={{ padding: '5px', textAlign: 'left' }}>
                 <font color="white">
@@ -44,8 +34,8 @@ const VideoCard = props => {
               </div>
             </Row>
           </Col>
-        </Link>
-      </Row>
+        </Row>
+      </Link>
     </div>
   );
 };

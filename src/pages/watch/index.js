@@ -5,6 +5,7 @@ import 'react-html5video/dist/styles.css';
 import axios from 'axios';
 import { Tabs } from 'antd';
 import ReactWordCloud from 'react-wordcloud';
+import WordCloud from '../../components/WordCloud';
 
 const TabPane = Tabs.TabPane;
 
@@ -53,21 +54,27 @@ export default class index extends Component {
         <h1>
           <b>{params.v}</b>
         </h1>
-        <Video
-          controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
-          docID={params.id}
-          category={params.c}
-          docName={params.v}
-        >
-          <source src={`video/${params.v}.mp4`} type="video/webm" />
-          <track
-            label="English"
-            kind="subtitles"
-            srcLang="en"
-            src={`srt/${params.v}.vtt`}
-            default
-          />
-        </Video>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+          <Video
+            controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
+            docID={params.id}
+            category={params.c}
+            docName={params.v}
+          >
+            <source src={`video/${params.v}.mp4`} type="video/webm" />
+            <track
+              label="English"
+              kind="subtitles"
+              srcLang="en"
+              src={`srt/${params.v}.vtt`}
+              default
+            />
+          </Video>
+          <div>
+            <h1>WordCloud</h1>
+            <WordCloud docID={params.id} />
+          </div>
+        </div>
         <br />
         <hr />
         <br />

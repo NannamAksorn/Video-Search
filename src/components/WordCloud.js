@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ReactWordCloud from 'react-wordcloud';
 import axios from 'axios';
+import { connect } from 'dva';
 
-export default class WordCloud extends Component {
+class WordCloud extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,7 +29,7 @@ export default class WordCloud extends Component {
   }
 
   render() {
-    let sid = this.props.sid || 0;
+    let sid = this.props.subtitle || this.state.wordCloud.length - 1;
     return (
       <div>
         <ReactWordCloud
@@ -49,3 +50,7 @@ export default class WordCloud extends Component {
     );
   }
 }
+
+export default connect(({ subtitle }) => ({
+  subtitle,
+}))(WordCloud);
