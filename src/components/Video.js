@@ -21,7 +21,7 @@ const Video = ({ video, dispatch, docID, docName, category, videoEl, children, .
   const handleSearchClick = () => {
     if (searchQuery) {
       axios
-        .get(`http://localhost:5000/sub/${category}/${docName}/${docID}/${searchQuery}`)
+        .get(`http://34.85.64.219:5000/sub/${category}/${docName}/${docID}/${searchQuery}`)
         .then(res => {
           setSearchResult(res.data);
         })
@@ -40,7 +40,7 @@ const Video = ({ video, dispatch, docID, docName, category, videoEl, children, .
     if (!fetching && query) {
       setFetching(true);
       axios
-        .get(`http://localhost:5000/suggestSub/${docID}/${query}`)
+        .get(`http://34.85.64.219:5000/suggestSub/${docID}/${query}`)
         .then(res => {
           // console.log(res.data);
           setDataSource(res.data);

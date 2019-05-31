@@ -15,9 +15,9 @@ class VideoCards extends Component {
   componentDidMount() {
     let url = this.props.location.search;
     let params = queryString.parse(url);
-    this.setState({ queryString: params.q }, function() {
+    this.setState({ queryString: params.q }, function () {
       axios
-        .get(`http://localhost:5000/search/${this.state.queryString}`)
+        .get(`http://34.85.64.219:5000/search/${this.state.queryString}`)
         .then(res => {
           this.setState({ videos: res.data });
         })
@@ -31,9 +31,9 @@ class VideoCards extends Component {
     let url = this.props.location.search;
     let params = queryString.parse(url);
     if (this.props.location.search !== prevProps.location.search) {
-      this.setState({ queryString: params.q }, function() {
+      this.setState({ queryString: params.q }, function () {
         axios
-          .get(`http://localhost:5000/search/${this.state.queryString}`)
+          .get(`http://34.85.64.219:5000/search/${this.state.queryString}`)
           .then(res => {
             this.setState({
               videos: res.data,

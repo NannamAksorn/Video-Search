@@ -25,3 +25,4 @@ lerna-debug.log
 /public/video/*
 /public/wordCloud/*
 yarn.lock
+server.js

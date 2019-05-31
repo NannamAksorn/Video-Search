@@ -21,7 +21,7 @@ export default class index extends Component {
     let url = this.props.location.search;
     let params = queryString.parse(url);
     axios
-      .get(`http://localhost:5000/description/${params.id}`)
+      .get(`http://34.85.64.219:5000/description/${params.id}`)
       .then(res => {
         this.setState({ description: res.data });
       })
@@ -29,7 +29,7 @@ export default class index extends Component {
         console.log('error', e);
       });
     axios
-      .get(`http://localhost:5000/wordCloud/${params.id}`)
+      .get(`http://34.85.64.219:5000/wordCloud/${params.id}`)
       .then(res => {
         let wordCloud = Object.keys(res.data).map(id => {
           return Object.keys(res.data[id]).map(word => {
