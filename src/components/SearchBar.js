@@ -20,7 +20,7 @@ const SearchBar = ({ dispatch, searches }) => {
     if (!fetching && query) {
       setFetching(true);
       axios
-        .get(`http://34.85.64.219:5000/suggest/${query}`)
+        .get(`${process.env.API_URL}/suggest/${query}`)
         .then(res => {
           // console.log(res.data);
           setDataSource(res.data);

@@ -21,6 +21,7 @@ lerna-debug.log
 .umi-production
 *.sw*
 *.un~
+/public/
 /public/srt/*
 /public/video/*
 /public/wordCloud/*

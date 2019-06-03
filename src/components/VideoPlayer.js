@@ -25,7 +25,7 @@ const VideoPlayer = props => {
               tracks: [
                 {
                   kind: 'subtitles',
-                  src: './srt/' + props.video.replace('mp4', 'vtt'),
+                  src: './vtt/' + props.video.replace('mp4', 'vtt'),
                   srcLang: 'en',
                   default: true,
                 },

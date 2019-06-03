@@ -6,9 +6,7 @@ import axios from 'axios';
 import { Tabs } from 'antd';
 import ReactWordCloud from 'react-wordcloud';
 import WordCloud from '../../components/WordCloud';
-
 const TabPane = Tabs.TabPane;
-
 export default class index extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +19,7 @@ export default class index extends Component {
     let url = this.props.location.search;
     let params = queryString.parse(url);
     axios
-      .get(`http://34.85.64.219:5000/description/${params.id}`)
+      .get(`${process.env.API_URL}/description/${params.id}`)
       .then(res => {
         this.setState({ description: res.data });
       })
@@ -29,7 +27,7 @@ export default class index extends Component {
         console.log('error', e);
       });
     axios
-      .get(`http://34.85.64.219:5000/wordCloud/${params.id}`)
+      .get(`${process.env.API_URL}/wordCloud/${params.id}`)
       .then(res => {
         let wordCloud = Object.keys(res.data).map(id => {
           return Object.keys(res.data[id]).map(word => {
@@ -66,7 +64,7 @@ export default class index extends Component {
               label="English"
               kind="subtitles"
               srcLang="en"
-              src={`srt/${params.v}.vtt`}
+              src={`vtt/${params.v}.vtt`}
               default
             />
           </Video>

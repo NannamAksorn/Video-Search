@@ -13,7 +13,7 @@ class WordCloud extends Component {
   componentDidMount() {
     if (this.props.docID) {
       axios
-        .get(`http://34.85.64.219:5000/wordCloud/${this.props.docID}`)
+        .get(`${process.env.API_URL}/wordCloud/${this.props.docID}`)
         .then(res => {
           let wordCloud = Object.keys(res.data).map(id => {
             return Object.keys(res.data[id]).map(word => {
@@ -43,8 +43,8 @@ class WordCloud extends Component {
             fontSizes: [10, 60],
             spiral: 'archimedean',
           }}
-        //   minSize={[400, 400]}
-        //   size={[100, 100]}
+          //   minSize={[400, 400]}
+          //   size={[100, 100]}
         />
       </div>
     );

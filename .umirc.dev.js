@@ -25,6 +25,6 @@ export default {
     ],
   ],
   define: {
-    'process.env.API_URL': 'http://34.85.64.219:5000',
+    'process.env.API_URL': 'http://localhost:5000',
   },
 };
