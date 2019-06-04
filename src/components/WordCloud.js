@@ -45,17 +45,28 @@ class WordCloud extends Component {
           }}
           callbacks={{
             getWordTooltip: ({ text, value }) => {
-              // axios
-              //   .get(
-              //     `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${text}&limit=1&namespace=0&format=json`,
-              //   )
-              //   .then(res => {
-              //     //0: "ideas"
-              //     // 1: ["Idea"]
-              //     // 2: ["In philosophy, ideas are usually taken as mental r…ct concepts that do not present as mental images."]
-              //     // 3: ["https://en.wikipedia.org/wiki/Idea"]
-              //     // console.log(res.data[2][0]);
-              //   });
+              axios
+                .get(
+                  `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=${text}&limit=1&namespace=0&format=json`,
+                )
+                .then(res => res.data)
+                .then(data => {
+                  //0: "ideas"
+                  // 1: ["Idea"]
+                  // 2: ["In philosophy, ideas are usually taken as mental r…ct concepts that do not present as mental images."]
+                  // 3: ["https://en.wikipedia.org/wiki/Idea"]
+                  if (data[2].length > 0) {
+                    this.props.dispatch({
+                      type: 'wordCloudInfo/set',
+                      payload: data,
+                    });
+                  } else {
+                    this.props.dispatch({
+                      type: 'wordCloudInfo/set',
+                      payload: ['No data', ['no data'], [], []],
+                    });
+                  }
+                });
               return text;
             },
             onWordClick: ({ text }) => {

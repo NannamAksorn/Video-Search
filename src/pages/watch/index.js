@@ -6,8 +6,10 @@ import axios from 'axios';
 import { Tabs } from 'antd';
 import ReactWordCloud from 'react-wordcloud';
 import WordCloud from '../../components/WordCloud';
+import { connect } from 'dva';
+
 const TabPane = Tabs.TabPane;
-export default class index extends Component {
+class index extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,6 +73,20 @@ export default class index extends Component {
           <div>
             <h1>WordCloud</h1>
             <WordCloud docID={params.id} />
+            <div
+              style={{
+                color: 'white',
+                fontSize: 'medium',
+                textAlign: 'left',
+                width: '500px',
+                padding: '10px',
+              }}
+            >
+              <h1>{this.props.wordCloudInfo[1][0]}</h1>
+              {this.props.wordCloudInfo[2][0]}
+              <br />
+              <a href={this.props.wordCloudInfo[3][0]}>{this.props.wordCloudInfo[3][0]}</a>
+            </div>
           </div>
         </div>
         <br />
@@ -126,3 +142,6 @@ export default class index extends Component {
     );
   }
 }
+export default connect(({ wordCloudInfo }) => ({
+  wordCloudInfo,
+}))(index);
