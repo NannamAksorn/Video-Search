@@ -21,7 +21,7 @@ class index extends Component {
     let url = this.props.location.search;
     let params = queryString.parse(url);
     axios
-      .get(`${process.env.API_URL}/description/${params.id}`)
+      .get(`${process.env.API_URL}/description/${params.id}?lang=${this.props.language}`)
       .then(res => {
         this.setState({ description: res.data });
       })
@@ -46,7 +46,7 @@ class index extends Component {
   render() {
     let url = this.props.location.search;
     let params = queryString.parse(url);
-    console.log(`video/${params.v}.mp4`);
+    // console.log(`video/${params.v}.mp4`);
     return (
       <div style={{ fontFamily: 'Georgia, sans-serif', align: 'center' }}>
         <br />
@@ -142,6 +142,7 @@ class index extends Component {
     );
   }
 }
-export default connect(({ wordCloudInfo }) => ({
+export default connect(({ wordCloudInfo, language }) => ({
   wordCloudInfo,
+  language,
 }))(index);

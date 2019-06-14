@@ -2,6 +2,7 @@ import styles from './index.css';
 import { Layout, Row, Col } from 'antd';
 import logo from '../assets/logo.png';
 import SearchBar from '../components/SearchBar';
+import LanguageSelector from '../components/LanguageSelector';
 import { connect } from 'dva';
 import Link from 'umi/link';
 const { Header, Content } = Layout;
@@ -31,6 +32,9 @@ function BasicLayout(props) {
             </Col>
             <Col span={16}>
               <SearchBar />
+            </Col>
+            <Col span={4}>
+              <LanguageSelector />
             </Col>
           </Row>
         </Header>

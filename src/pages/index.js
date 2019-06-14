@@ -2,7 +2,7 @@ import styles from './index.css';
 import { connect } from 'dva';
 
 const VideoCards = props => {
-  console.log(props.selectVideo);
+  // console.log(props.selectVideo);
 
   return (
     <div className={styles.normal}>

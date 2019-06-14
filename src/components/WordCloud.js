@@ -12,8 +12,9 @@ class WordCloud extends Component {
   }
   componentDidMount() {
     if (this.props.docID) {
+      console.log(this.props.language);
       axios
-        .get(`${process.env.API_URL}/wordCloud/${this.props.docID}`)
+        .get(`${process.env.API_URL}/wordCloud/${this.props.docID}?lang=${this.props.language}`)
         .then(res => {
           let wordCloud = Object.keys(res.data).map(id => {
             return Object.keys(res.data[id]).map(word => {
@@ -90,6 +91,7 @@ class WordCloud extends Component {
   }
 }
 
-export default connect(({ subtitle }) => ({
+export default connect(({ subtitle, language }) => ({
   subtitle,
+  language,
 }))(WordCloud);
